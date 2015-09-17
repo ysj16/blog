@@ -1,0 +1,31 @@
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;} 
+ol,li,ul{margin:0; padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+address,caption, cite,code,dfn,em,strong,th,var,i,b{font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+a{color:#333;text-decoration: none;}
+a:hover { color: #c00; }
+.cl:after{content:'.';display:block;height:0;clear:both;visibility:hidden}
+.cl{*display:inline-block;}
+.hidden{display:none;}
+.fr{float:right;_display:inline;}
+.fl{float:left;_display:inline;}
+body{font:normal 12px/1.5 'microsoft yahei';color:#333;}
+h1{display: block;height: 0;width: 0;overflow: hidden;}
+
+/*头部样式*/
+.title{font-size: 20px;font-weight: 700;height: 80px;padding:20px 0 0 20px;}
+.title small{display:block;font-weight: normal;font-size: 14px;text-indent: 1em;}
+.navBar {height: 50px;background-color:#169FE6;}
+.nav li{float:left;width:100px;line-height: 50px;text-align: center;font-size: 16px;}
+
+/*边栏样式*/
+.sideBar{width:350px;border-left:2px solid #169FE6;}
+.sideBar .box{width:316px;margin:20px auto 0 auto;padding-bottom:12px;border:2px solid #169FE6;}
+.sideBar .box-hd{height: 35px;line-height:35px;background-color:#169FE6;text-indent: 1em;color:#fff;font-size: 16px;}
+.search{margin:12px 0px 0 25px;}
+.search .text{width:180px;height: 23px;font-size: 14px;border: 1px solid #aaa;padding-left:3px}
+.search .text:focus{border:1px solid #333;outline: none;}
+.search .btn{height: 26px;border:1px solid #aaa;background-color: #eee;}

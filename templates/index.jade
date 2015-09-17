@@ -1,8 +1,23 @@
 extends layout/layout
 block css
-	link(rel="stylesheet" href="../assets/css/base.css")
+	link(rel="stylesheet" href="../assets/css/common.css")
 	link(rel="stylesheet" href="../assets/css/index.css")
 block js
 	script(src="../assets/js/common/require.js" data-main="../assets/js/index.js")
 
 block content
+	div.bd
+		div.sideBar.fr 
+			div.box
+				div.box-hd 搜索
+				form.search
+					input.text(type='text')
+					input.btn(type="submit" value="站内搜索")
+				form.search
+					input.text(type='text')
+					input.btn(type="submit" value="百度搜索")
+			div.box
+				div.box-hd 关于我
+				div.aboutMe
+					
+		div.main sfsf

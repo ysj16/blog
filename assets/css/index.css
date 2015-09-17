@@ -1,8 +1,5 @@
-.title{font-size: 20px;font-weight: 700;height: 80px;padding:20px 0 0 20px;}
-.title small{display:block;font-weight: normal;font-size: 14px;text-indent: 1em;}
-.navBar {height: 50px;border:1px solid #ddd;}
-.nav li{float:left;width:100px;line-height: 50px;text-align: center;font-size: 16px;}
-.search{margin:12px 40px 0 0;}
-.search .text{width:150px;height: 23px;font-size: 14px;border: 1px solid #aaa;padding:0}
-.search .text:focus{border:1px solid #333;outline: none;}
-.search .btn{height: 26px;border:1px solid #aaa;background-color: #eee;}
+
+
+/*首页主体*/
+.main{margin-right: 350px;height: 100px;}
+
