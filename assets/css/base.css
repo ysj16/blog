@@ -1,0 +1,16 @@
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;} 
+ol,li,ul{margin:0; padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+address,caption, cite,code,dfn,em,strong,th,var,i,b{font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+a{color:#333;text-decoration: none;}
+a:hover { color: #c00; }
+.cl:after{content:'.';display:block;height:0;clear:both;visibility:hidden}
+.cl{*display:inline-block;}
+.hidden{display:none;}
+.fr{float:right;_display:inline;}
+.fl{float:left;_display:inline;}
+body{font:normal 12px/1.5 'microsoft yahei';color:#333;}
+h1{display: block;height: 0;width: 0;overflow: hidden;}
