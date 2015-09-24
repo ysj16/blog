@@ -1,5 +1,9 @@
 
 
 /*首页主体*/
-.main{margin-right: 350px;height: 100px;}
-
+.main{margin-right: 350px;height: 100px;padding:30px;}
+.m-box{margin-bottom:30px;}
+.m-box h2{font-size: 16px;font-weight: 700;color:#146EB4;border-bottom:2px solid #146eb4;}
+.m-box-bd{padding-left: 10px;}
+.m-box-bd h3{font-size: 14px;font-weight: 700;color:#146eb4;}
+.m-box-bd p{text-indent: 1.2em;font-size: 14px;}
