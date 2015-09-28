@@ -4,10 +4,20 @@ var Schema = mongoose.Schema;
 var NewsSchema = new Schema({
 	title:String,
 	author:String,
-	date:Date,
+	date:{
+		type:String,
+		default:Date.now().toString()
+	},
 	from:String,
-	url:String,
-	isCollect:Boolean
+	fromSite:String,
+	url:{
+		type:String,
+		unique:true
+	},
+	isCollect:{
+		type:Boolean,
+		default:false
+	}
 
 })
 NewsSchema.statics = {
