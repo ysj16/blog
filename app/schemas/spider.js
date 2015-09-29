@@ -13,4 +13,9 @@ var SpiderSchema = new Schema({
 	url:String,
 	date:String
 })
+SpiderSchema.statics = {
+	fetch:function(){
+		return this.find();
+	}
+}
 module.exports = SpiderSchema;

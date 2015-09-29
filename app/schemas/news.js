@@ -21,8 +21,8 @@ var NewsSchema = new Schema({
 
 })
 NewsSchema.statics = {
-	fetch:function(cb){
-		return this.find({}).sort('date').exec(cb);
+	fetch:function(num){
+		return this.find().sort("date").limit(num);
 	}
 }
 

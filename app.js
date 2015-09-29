@@ -1,12 +1,11 @@
 var express = require("express");
 var http = require("http");
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 //var mongoStore = require('connect-mongo')(express)
 var cheerio = require("cheerio");
 var iconv = require('iconv-lite');
 var fs = require("fs");
 var schedule = require("node-schedule");
-var Promise = require("bluebird");
 var app = new express();
 var port = process.env.PORT||3000;
 
@@ -33,7 +32,8 @@ var addModels = function(path){
 addModels("./app/models");//加载路径下的所有模块
 
 app.set("views","./app/views");//设置模板引擎以及目录
-app.set("views engine","jade");
+app.set("view engine","jade");
+app.use(express.static('assets'))
 
 var spider = function(option,cb){//文章爬虫
 	http.get(option.site,function(res){
@@ -91,24 +91,5 @@ var job = schedule.scheduleJob(rule,function(){
 		})
 })
 
-
-app.get("/",function(req,res2){
-	var News = mongoose.model("News");
-	var Spider = mongoose.model("Spider");
-	News
-		.find()
-		.sort("date")
-		.limit(10);
-		console.log(test)
-		// .exec(function(err,news){
-		// 	if(err){
-		// 		console.log(err)
-		// 	}
-		// })
-	// res.render("index",{
-	// 	title:"虞上将的个人网站，个人博客"
-	// 	news:
-	// })
-
-})
+require("./config/routes")(app);
 app.listen(port);
