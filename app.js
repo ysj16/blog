@@ -62,11 +62,12 @@ var spider = function(option,cb){//文章爬虫
 }
 
 var rule = new schedule.RecurrenceRule();//定时爬虫任务
-rule.hour = 18
-rule.minute = 30;
+rule.hour = 10
+rule.minute = 42;
 
 var job = schedule.scheduleJob(rule,function(){
 	var Spider = mongoose.model("Spider");
+	var News = mongoose.model("News");
 	Spider
 		.find()
 		.exec(function(err,spiders){

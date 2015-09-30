@@ -5,7 +5,7 @@ exports.index = function(req,res){
 	var Spider = mongoose.model("Spider");
 	var renderObj = {};
     News
-	  .fetch(10)
+	  .fetch(15)
 	  .then(function(news){
 	  	renderObj.news = news;
 	  })
