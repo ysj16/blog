@@ -11,10 +11,10 @@
 .m-box-bd p{text-indent: 1.2em;font-size: 14px;}
 
 .news li{height: 30px;line-height: 30px;}
-
+.news .collect{color:#ccc;margin-left:8px;cursor: pointer;}
 
 /*分页*/
 .pageNav{font-size: 14px;overflow: hidden;}
-.pageNav a{float:left;border: 1px solid #146eb4;line-height: 1.5;margin-right:5px;text-align: center;}
+.pageNav a,.pageNav span{float:left;border: 1px solid #146eb4;line-height: 1.5;margin-right:5px;text-align: center;}
 .pageNav .hd,.pageNav .prev,.pageNav .next,.pageNav .last{padding:0 4px;}
 .pageNav .page{width:20px;}

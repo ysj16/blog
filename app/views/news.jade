@@ -3,32 +3,34 @@ block css
 	link(rel="stylesheet" href="/css/common.css")
 	link(rel="stylesheet" href="/css/index.css")
 block js
-	script(src="/js/common/require.js" data-main="../assets/js/index.js")
+	script(src="/js/common/Custom.js")
+	script(src="/js/index.js")
 
 block content
 	include layout/sidebar
 	.main
 		div.pageNav
-			a(href="##").hd 共20页，每页20条记录
-			a(href="##").prev 上一页
-			a(href="1").page 1
-			a(href="2").page 2
-			a(href="3").page 3
-			a(href="4").page 4
-			a(href="5").page 5
-			a(href="##").page ...
-			a(href="10").page 18
-			a(href="11").page 19
-			a(href="12").page 20
-			a(href="##").next 下一页
-			a(href="20").last 跳到最后
+			span.hd 共20页，每页20条记录
+			a(href="/news/#{prev}").prev 上一页
+			-for(var i=1;i<=pages;i++){
+				if i<=5||i>=pages-2
+					a(href="/news/#{i}").page #{i}
+				else 
+				if i==6
+					a(href="##").page ...
+			-}
+			a(href="/news/#{next}").next 下一页
+			a(href="/news/#{pages}").last 跳到最后
 		div.m-box
 			.m-box-hd 
 				h2.fl 业界最新
-				a(href="##").fr.more 更多
 			ul.m-box-bd.news
 				each item in news
 					li.cl
 						a(href="#{item.url}" target="_blank")
 							h3.fl [#{item.from}]#{item.title}
-							small.fr 作者：#{item.author}
+						if(item.isCollect)
+							i(data-id="#{item._id}").collect 已收藏
+						else
+							i(data-id="#{item._id}").collect 添加收藏
+						small.fr 作者：#{item.author}

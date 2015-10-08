@@ -1,4 +1,4 @@
-var Custom = {
+var C = Custom = {
     ie6:!-[1,]&&!window.XMLHttpRequest,
     addHandler:function(target,event,handler){//事件绑定
         if(window.addEventListener){
@@ -71,6 +71,72 @@ var Custom = {
                     timeout = null;
                     fn();
                 }, delay)
+            }
+        }
+    },
+
+
+    /*ajax*/
+    createXMLHTTPRequest:function() {     
+        var xmlHttpRequest;  
+        if (window.XMLHttpRequest) {     
+            xmlHttpRequest = new XMLHttpRequest();     
+         //针对某些特定版本的mozillar浏览器的BUG进行修正     
+            if (xmlHttpRequest.overrideMimeType) {     
+             xmlHttpRequest.overrideMimeType("text/xml");     
+            }     
+        } else if (window.ActiveXObject) {
+            xmlHttpRequest = new ActiveXObject("MSXML2.XMLHTTP")||new ActiveXObject("Microsoft.XMLHTTP");     
+            // var activexName = [ "MSXML2.XMLHTTP", "Microsoft.XMLHTTP" ];     
+            // for ( var i = 0; i < activexName.length; i++) {     
+            //     xmlHttpRequest = new ActiveXObject(activexName[i]);   
+            //     if(xmlHttpRequest){  
+            //         break;  
+            //     }  
+            // }     
+        }     
+        return xmlHttpRequest;  
+    },
+    get:function (url,params,onSuccess,onError){  
+        var req = this.createXMLHTTPRequest(),pStr = "";  
+        if(req){
+            for(var i in params){
+                pStr += (i + "=" + params[i]+"&")
+            }
+            if(pStr)
+                pStr = pStr.slice(0,pStr.length-1)
+            req.open("GET", url + "?" + pStr, true);  
+            req.onreadystatechange = function(){  
+                if(req.readyState == 4){  
+                    if(req.status == 200){  
+                        onSuccess();
+                    }else{
+                        onError();
+                    }  
+                }  
+            }  
+            req.send(null);  
+        }  
+    },
+    post:function(url,params,onSuccess,onError){
+        var req = this.createXMLHTTPRequest(),pStr="";
+        if(req){
+            for(var i in params){
+                pStr += (i + "=" + params[i]+"&")
+            }
+            if(pStr)
+                pStr = pStr.slice(0,pStr.length-1)
+            req.open("POST",url, true);
+            req.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8;");   
+            req.send(pStr);
+            req.onreadystatechange = function(){
+                if(req.readyState == 4){
+                    if(req.status == 200){
+                        onSuccess();
+                    }else{
+                        onError();
+                    }
+                }
             }
         }
     }
