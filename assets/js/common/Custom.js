@@ -108,10 +108,10 @@ var C = Custom = {
             req.open("GET", url + "?" + pStr, true);  
             req.onreadystatechange = function(){  
                 if(req.readyState == 4){  
-                    if(req.status == 200){  
-                        onSuccess();
+                    if(req.status == 200){
+                        onSuccess&&onSuccess(req.responseText);
                     }else{
-                        onError();
+                        onError&&onError();
                     }  
                 }  
             }  
@@ -132,9 +132,9 @@ var C = Custom = {
             req.onreadystatechange = function(){
                 if(req.readyState == 4){
                     if(req.status == 200){
-                        onSuccess();
+                        onSuccess&&onSuccess(req.responseText);
                     }else{
-                        onError();
+                        onError&&onError();
                     }
                 }
             }

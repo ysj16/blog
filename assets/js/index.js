@@ -6,8 +6,8 @@
 		if(!C.hasClass(target,"collect"))
 			return;
 		else{
-			C.get("/news/collect11",{id:11,id2:22},function(){
-				console.log(111)
+			C.get("/news/collect",{id:target.getAttribute("data-id"),isCollect:target.getAttribute("data-collect")},function(d){
+				console.log(d)
 			})
 			//alert(target.getAttribute("data-id"))
 		}

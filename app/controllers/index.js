@@ -10,6 +10,6 @@ exports.index = function(req,res){
 	  	renderObj.news = news;
 	  })
 	  .then(function(){
-		res.render("index",renderObj);
+		return res.render("index",renderObj);
 	  })
 }
