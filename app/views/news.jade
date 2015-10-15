@@ -14,7 +14,10 @@ block content
 			a(href="/news/#{prev}").prev 上一页
 			-for(var i=1;i<=pages;i++){
 				if i<=5||i>=pages-2
-					a(href="/news/#{i}").page #{i}
+					if(i==page)
+						a(class="on",href="/news/#{i}").page #{i}
+					else
+						a(href="/news/#{i}").page #{i}
 				else 
 				if i==6
 					a(href="##").page ...
@@ -27,10 +30,10 @@ block content
 			ul.m-box-bd.news
 				each item in news
 					li.cl
-						a(href="#{item.url}" target="_blank")
+						a(href="#{item.url}" target="_blank").fl
 							h3.fl [#{item.from}]#{item.title}
 						if(item.isCollect)
-							i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect 已收藏
+							i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect.fl 已收藏
 						else
-							i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect 添加收藏
+							i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect.fl 添加收藏
 						small.fr 作者：#{item.author}

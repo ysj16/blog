@@ -6,8 +6,18 @@
 		if(!C.hasClass(target,"collect"))
 			return;
 		else{
-			C.get("/news/collect",{id:target.getAttribute("data-id"),isCollect:target.getAttribute("data-collect")},function(d){
-				console.log(d)
+			var params = {id:target.getAttribute("data-id"),isCollect:target.getAttribute("data-collect")};
+			C.get("/news/collect",params,function(d){
+				var d = JSON.parse(d);
+				if(d.msg=="ok"){
+					if(params.isCollect=="false"){
+						target.innerHTML = "已收藏";
+						target.setAttribute("data-collect","true");
+					}else{
+						target.innerHTML = "添加收藏";
+						target.setAttribute("data-collect","false");
+					}
+				}
 			})
 			//alert(target.getAttribute("data-id"))
 		}

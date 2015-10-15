@@ -12,6 +12,7 @@ exports.list = function(req,res,next){
 	      .exec(function(err){if(err) console.log(err)})
 	      .then(function(data){
 	      	renderObj.pages = Math.ceil(data.length/20);//获取最大页码
+	      	renderObj.page = page - 0;
 	      	if(page>1)
 	      		renderObj.prev = page-1;
 	      	if(page<renderObj.pages)

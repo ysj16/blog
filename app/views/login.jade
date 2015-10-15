@@ -1,0 +1,12 @@
+extend layout/layout
+block css
+	link(rel="stylesheet" href="/css/common.css")
+	link(rel="stylesheet" href="/css/index.css")
+block js
+	script(src="/js/common/Custom.js")
+block content
+	include layout/sideBar
+	form(method="POST" action="/user/login").loginBox
+		input(name="name",type="text")
+		input(name="password",type="text")
+		button(type="submit").btn.btn-submit 登录

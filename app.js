@@ -1,10 +1,12 @@
 var express = require("express");
 var http = require("http");
 var mongoose = require('mongoose');
-//var mongoStore = require('connect-mongo')(express)
 var cheerio = require("cheerio");
 var iconv = require('iconv-lite');
 var fs = require("fs");
+var bodyParser = require("body-parser");
+var session = require("express-session");
+var mongoStore = require('connect-mongo')(session)
 var schedule = require("node-schedule");
 var app = new express();
 var port = process.env.PORT||3000;
@@ -13,7 +15,6 @@ var port = process.env.PORT||3000;
 var dbUrl = 'mongodb://localhost/blog'
 
 mongoose.connect(dbUrl)
-
 var addModels = function(path){
 	fs
 	  .readdirSync(path)
@@ -33,7 +34,17 @@ addModels("./app/models");//加载路径下的所有模块
 
 app.set("views","./app/views");//设置模板引擎以及目录
 app.set("view engine","jade");
-app.use(express.static('assets'))
+app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+	secret:"blog",
+	store:new mongoStore({
+		url:dbUrl,
+		collection:"sessions"
+	})
+}))
 
 var spider = function(option,cb){//文章爬虫
 	http.get(option.site,function(res){
@@ -62,8 +73,8 @@ var spider = function(option,cb){//文章爬虫
 }
 
 var rule = new schedule.RecurrenceRule();//定时爬虫任务
-rule.hour = 10
-rule.minute = 42;
+rule.hour = 23
+rule.minute = 50;
 
 var job = schedule.scheduleJob(rule,function(){
 	var Spider = mongoose.model("Spider");
