@@ -1,13 +1,16 @@
 var express = require("express");
 var http = require("http");
 var mongoose = require('mongoose');
+var session = require("express-session");
+var compress = require("compression");
 var cheerio = require("cheerio");
 var iconv = require('iconv-lite');
 var fs = require("fs");
 var bodyParser = require("body-parser");
-var session = require("express-session");
 var mongoStore = require('connect-mongo')(session)
 var schedule = require("node-schedule");
+var morgan = require("morgan");
+var markdown = require("markdown").markdown;
 var app = new express();
 var port = process.env.PORT||3000;
 
@@ -30,12 +33,10 @@ var addModels = function(path){
 	  	}
 	  })
 }
+console.log(markdown.toHTML("HELLO *World!*"))
 addModels("./app/models");//加载路径下的所有模块
-
 app.set("views","./app/views");//设置模板引擎以及目录
 app.set("view engine","jade");
-app.use(express.static('assets'));
-app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -45,6 +46,16 @@ app.use(session({
 		collection:"sessions"
 	})
 }))
+app.use(compress());
+app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({extended:false}));
+
+if(app.get("env")=="development"){
+  app.set('showStackError', true)
+  app.use(morgan(':method :url :status'))
+  app.locals.pretty = true
+}
+
 
 var spider = function(option,cb){//文章爬虫
 	http.get(option.site,function(res){

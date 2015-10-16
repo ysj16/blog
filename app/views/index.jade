@@ -8,7 +8,6 @@ block js
 
 block content
 	include layout/sidebar
-				
 	div.main
 		div.m-box
 			.m-box-hd 
@@ -33,7 +32,11 @@ block content
 						a(href="#{item.url}" target="_blank")
 							h3.fl [#{item.from}]#{item.title}
 						if(item.isCollect)
-							i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect 已收藏
+							if(user)
+								i(data-id="#{item._id}",data-collect="#{item.isCollect}").admin.collect 已收藏
+							else
+								i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect 已收藏	
 						else
-							i(data-id="#{item._id}",data-collect="#{item.isCollect}").collect 添加收藏
+							if user
+								i(data-id="#{item._id}",data-collect="#{item.isCollect}").admin.collect 添加收藏
 						small.fr 作者：#{item.author}

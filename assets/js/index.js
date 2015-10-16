@@ -3,7 +3,7 @@
 	C.addHandler($colBox,"click",function(e){
 		var e = e||window.event;
 		var target = e.target||e.srcElement;
-		if(!C.hasClass(target,"collect"))
+		if(!C.hasClass(target,"collect")||!C.hasClass(target,"admin"))
 			return;
 		else{
 			var params = {id:target.getAttribute("data-id"),isCollect:target.getAttribute("data-collect")};

@@ -5,10 +5,15 @@ div.header
 	div.navBar.cl
 		ul.nav.fl
 			li 
-				a(href="\\") 首页
+				a(href="/") 首页
 			li 
-				a(href="\\") 前端
+				a(href="/") 前端
 			li 
-				a(href="\collects") 收藏
+				a(href="/collects") 收藏
 			li 
 				a(href="#") Demos
+		if user
+			a(href="/user/logout").log [注销]
+			span.user	欢迎您&nbsp;#{user.name}
+		else
+			a(href="/login").log [登录]

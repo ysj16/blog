@@ -32,7 +32,6 @@ exports.logout = function(req,res){
 exports.loginRequired = function(req,res,next){
 	var user = req.session.user;
 	if(!user){
-	console.log(22)
 		return res.redirect("/");
 	}
 	next();
