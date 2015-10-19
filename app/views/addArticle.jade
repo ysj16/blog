@@ -7,7 +7,7 @@ block js
 block content
 	include layout/sideBar
 	div.main
-		form(method="POST" action="/").newArt
+		form(method="POST" action="").newArt
 			input(name="title",type="text",placeholder="标题（必填）")
 			input(name="author",type="text",placeholder="作者")
 			input(name="tags",type="text",placeholder="标签，多个标签请用逗号分离")

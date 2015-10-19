@@ -10,7 +10,6 @@ var bodyParser = require("body-parser");
 var mongoStore = require('connect-mongo')(session)
 var schedule = require("node-schedule");
 var morgan = require("morgan");
-var markdown = require("markdown").markdown;
 var app = new express();
 var port = process.env.PORT||3000;
 
@@ -33,7 +32,6 @@ var addModels = function(path){
 	  	}
 	  })
 }
-console.log(markdown.toHTML("HELLO *World!*"))
 addModels("./app/models");//加载路径下的所有模块
 app.set("views","./app/views");//设置模板引擎以及目录
 app.set("view engine","jade");
@@ -46,6 +44,7 @@ app.use(session({
 		collection:"sessions"
 	})
 }))
+
 app.use(compress());
 app.use(express.static('assets'));
 app.use(bodyParser.urlencoded({extended:false}));
@@ -55,7 +54,6 @@ if(app.get("env")=="development"){
   app.use(morgan(':method :url :status'))
   app.locals.pretty = true
 }
-
 
 var spider = function(option,cb){//文章爬虫
 	http.get(option.site,function(res){
@@ -113,6 +111,10 @@ var job = schedule.scheduleJob(rule,function(){
 			})
 		})
 })
+
+// var Article = mongoose.model("Article");
+// var art = new Article({title:"test",author:"yushangjiang"});
+// art.save()
 
 require("./config/routes")(app);
 app.listen(port);

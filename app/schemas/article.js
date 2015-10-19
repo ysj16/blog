@@ -12,8 +12,12 @@ var ArticleSchema = new Schema({
 	},
 	tags:[{
 		type:ObjectId,
-		ref:"tag"
+		ref:"Tag"
 	}],
+	prev:{
+		type:ObjectId,
+		ref:"Article"
+	},
 	meta:{
 		createAt:{
 			type:Date,
@@ -27,12 +31,24 @@ var ArticleSchema = new Schema({
 
 })
 ArticleSchema.pre("save",function(next){
+	var Article = mongoose.model("Article");
 	if(this.isNew){
+		var me = this;
 		this.meta.createAt = this.meta.updateAt = Date.now();
+		Article
+			.find()
+			.sort({_id:-1})
+			.limit(1)
+			.exec(function(err,data){
+				if(err) console.log(err)
+				if(data.length>0)
+					me.prev = data[0]._id;
+				next();
+			})
 	}else{
 		this.meta.updateAt = Date.now();
+		next();
 	}
-	next();
 })
 ArticleSchema.statics = {
 	fetch:function(num){

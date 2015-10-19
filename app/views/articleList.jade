@@ -1,0 +1,35 @@
+extends layout/layout
+block css
+	link(rel="stylesheet" href="/css/common.css")
+	link(rel="stylesheet" href="/css/index.css")
+block js
+	script(src="/js/common/Custom.js")
+	script(src="/js/index.js")
+
+block content
+	include layout/sidebar
+	.main
+		div.pageNav
+			span.hd 共20页，每页20条记录
+			a(href="/article/#{prev}").prev 上一页
+			-for(var i=1;i<=pages;i++){
+				if i<=5||i>=pages-2
+					if(i==page)
+						a(class="on",href="/article/#{i}").page #{i}
+					else
+						a(href="/article/#{i}").page #{i}
+				else 
+				if i==6
+					a(href="##").page ...
+			-}
+			a(href="/article/#{next}").next 下一页
+			a(href="/article/#{pages}").last 跳到最后
+		div.m-box
+			.m-box-hd 
+				h2.fl 业界最新
+			ul.m-box-bd.news
+				each item in articles
+					li.cl
+						a(href="detail/#{item._id}" target="_blank").fl
+							h3.fl #{item.title}
+						small.fr 作者：#{item.author}

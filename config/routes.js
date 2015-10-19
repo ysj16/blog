@@ -11,17 +11,20 @@ module.exports = function(app){
 		next();
 	})
 
-	app.get("/",Index.index);
+	app.get("/",Index.index)
 
-	app.post("/user/login",User.login);
-	app.get("/user/logout",User.logout);
-	app.get("/login",User.loginPage);
+	app.post("/user/login",User.login)
+	app.get("/user/logout",User.logout)
+	app.get("/login",User.loginPage)
 
-	app.get("/news/:page?",News.list);
-	app.get("/news/collect",User.loginRequired,News.collect);
+	app.get("/news/:page?",News.list)
+	app.get("/news/collect",User.loginRequired,News.collect)
 
 
-	app.get("/article/add",Article.newArticle);
+	app.get("/article/:page?",Article.list)
+	app.get("/article/detail/:id",Article.show)
+	app.get("/article/add",User.loginRequired,Article.newArticle)
+	app.post("/article/add",User.loginRequired,Article.add)
 	
 	app.get("*",function(req,res){
 		res.writeHead(404);
