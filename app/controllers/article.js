@@ -7,7 +7,7 @@ var DateFormat = function(date){
 	str += date.getFullYear() + "年" + (date.getMonth()+ 1) + "月" + date.getDay() + "日";
 	return str;
 }
-exports.list = function(req,res){
+exports.list = function(req,res,next){
 	var page = req.params.page||1,renderObj={prev:1,next:page};
 	if(+page != page||page==0) {
 		next();
@@ -41,6 +41,7 @@ exports.show  = function(req,res){
 		.findOne({_id:id})
 		.populate("tags")
 		.exec(function(err,data){
+			console.log(data)
 			obj.content = data.content;
 			obj.author = data.author;
 			obj.title = data.title;
