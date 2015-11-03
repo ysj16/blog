@@ -3,11 +3,12 @@
 /*首页主体*/
 .m-box{margin-bottom:30px;}
 .m-box-hd{border-bottom:2px solid #146eb4;height: 40px;}
-.m-box-hd h2{font-size: 16px;line-height:40px;height:40px;font-weight: 700;color:#146EB4;}
+.m-box-hd h2,.m-box-hd a{font-size: 16px;line-height:40px;height:40px;font-weight: 700;color:#146EB4;}
 .m-box-hd .more{line-height: 40px;font-size: 14px;font-weight: 700;}
 .m-box-bd{padding-left: 10px;}
 .m-box-bd h3{font-size: 14px;font-weight: 700;color:#146eb4;}
 .m-box-bd p{text-indent: 1.2em;font-size: 14px;}
+.m-box-bd .art-op{color:#ccc;margin-left: 8px;cursor: pointer;}
 
 .news li{height: 30px;line-height: 30px;}
 .news .collect{color:#ccc;margin-left:8px;cursor: pointer;}

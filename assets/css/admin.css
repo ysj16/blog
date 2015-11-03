@@ -1,2 +1,3 @@
 .newArt input{width:100%;}
-.newArt textarea{width:100%;height: 1000px;}
+.newArt .preface{width:100%;height: 100px;}
+.newArt .contents{width:100%;height: 1000px;}

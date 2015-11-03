@@ -5,6 +5,7 @@ var ObjectId = Schema.Types.ObjectId;
 var ArticleSchema = new Schema({
 	title:String,
 	author:String,
+	preface:String,
 	content:String,
 	isTop:{
 		type:Boolean,
@@ -14,6 +15,15 @@ var ArticleSchema = new Schema({
 		type:ObjectId,
 		ref:"Tag"
 	}],
+	pv:{
+		type:Number,
+		default:0
+	},
+	/*状态：0草稿，1发布*/
+	status:{
+		type:Number,
+		default:0
+	},
 	prev:{
 		type:ObjectId,
 		ref:"Article"
@@ -34,7 +44,7 @@ ArticleSchema.pre("save",function(next){
 	var Article = mongoose.model("Article");
 	if(this.isNew){
 		var me = this;
-		this.meta.createAt = this.meta.updateAt = Date.now();
+		this.meta.createAt = this.meta.modifyAt = Date.now();
 		Article
 			.find()
 			.sort({_id:-1})
@@ -46,10 +56,14 @@ ArticleSchema.pre("save",function(next){
 				next();
 			})
 	}else{
-		this.meta.updateAt = Date.now();
+		this.meta.modifyAt = Date.now();
 		next();
 	}
 })
+// ArticleSchema.pre("update",function(next){
+// 	console.log(this)
+// 	this._update.meta.modifyAt = Date.now();
+// })
 ArticleSchema.statics = {
 	fetch:function(num){
 		return this.find().sort("date").limit(num);

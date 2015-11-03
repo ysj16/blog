@@ -21,10 +21,15 @@ module.exports = function(app){
 	app.get("/news/collect",User.loginRequired,News.collect)
 
 
-	app.get("/article/:page?",Article.list)
+	app.get("/article/list/:page?",Article.list)
 	app.get("/article/detail/:id",Article.show)
+	app.get("/article/edit/:id",Article.editArticle)
 	app.get("/article/add",User.loginRequired,Article.newArticle)
+	app.get("/article/release/:id/:status",User.loginRequired,Article.release)
+	app.get("/article/stick/:id/:isTop",User.loginRequired,Article.stick)
 	app.post("/article/add",User.loginRequired,Article.add)
+	app.post("/article/update",User.loginRequired,Article.update)
+	app.get("/article/delete/:id",User.loginRequired,Article.delete)
 	
 	app.get("*",function(req,res){
 		res.writeHead(404);

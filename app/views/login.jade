@@ -1,13 +1,13 @@
 extend layout/layout
 block css
 	link(rel="stylesheet" href="/css/common.css")
-	link(rel="stylesheet" href="/css/index.css")
+	link(rel="stylesheet" href="/css/style.css")
 block js
 	script(src="/js/common/Custom.js")
 block content
 	include layout/sideBar
 	div.main
 		form(method="POST" action="/user/login").loginBox
-			input(name="name",type="text",placeholder="用户名")
-			input(name="password",type="password",placeholder="密码")
+			input(name="name",type="text",placeholder="用户名").input
+			input(name="password",type="password",placeholder="密码").input
 			button(type="submit").btn.btn-submit 登录

@@ -13,7 +13,6 @@ var morgan = require("morgan");
 var app = new express();
 var port = process.env.PORT||3000;
 
-
 var dbUrl = 'mongodb://localhost/blog'
 
 mongoose.connect(dbUrl)
@@ -117,4 +116,5 @@ var job = schedule.scheduleJob(rule,function(){
 // art.save()
 
 require("./config/routes")(app);
+
 app.listen(port);

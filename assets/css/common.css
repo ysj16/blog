@@ -15,12 +15,14 @@ a:hover { color: #c00; }
 body{font:normal 12px/1.5 'microsoft yahei';color:#333;}
 h1{display: block;height: 0;width: 0;overflow: hidden;}
 
+.fc777{color:#777;}
+.ml20{margin-left:20px;}
 
 /*公用样式*/
 .btn{height: 30px;border:none;border-radius: 4px;}
 .btn-submit{background-color: #146eb4;color:#fff;padding:0 40px;}
-input,textarea{height: 30px;line-height: 1.5;font-size: 16px;padding-left: .5em;margin:5px;border:1px solid #bbb;border-radius: 4px;color:#555;}
-input:focus{outline:1px solid #146EB4}
+.input,.textarea{height: 30px;line-height: 1.5;font-size: 16px;padding-left: .5em;margin:5px;border:1px solid #bbb;border-radius: 4px;color:#555;}
+.input:focus{outline:1px solid #146EB4}
 /*头部样式*/
 .title{font-size: 20px;font-weight: 700;height: 80px;padding:20px 0 0 20px;}
 .title small{display:block;font-weight: normal;font-size: 14px;text-indent: 1em;}
@@ -47,3 +49,4 @@ input:focus{outline:1px solid #146EB4}
 .loginBox{width:300px;margin:0 auto;}
 .loginBox .btn{margin:5px 0 0 150px;}
 .loginBox input{width:250px;}
+

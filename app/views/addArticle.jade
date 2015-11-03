@@ -8,9 +8,9 @@ block content
 	include layout/sideBar
 	div.main
 		form(method="POST" action="").newArt
-			input(name="title",type="text",placeholder="标题（必填）")
-			input(name="author",type="text",placeholder="作者")
-			input(name="tags",type="text",placeholder="标签，多个标签请用逗号分离")
-			textarea(name="contents",placeholder="文章内容，支持Markdown格式")
+			input(name="title",type="text",placeholder="标题（必填）").input
+			input(name="author",type="text",placeholder="作者").input
+			input(name="tags",type="text",placeholder="标签，多个标签请用空格分离").input
+			textarea(name="preface",placeholder="前言").input.preface
+			textarea(name="contents",placeholder="文章内容，支持Markdown格式").input.contents
 			button(type="submit").btn.btn-submit 提交
-			button(type="button").btn.btn-submit 预览
