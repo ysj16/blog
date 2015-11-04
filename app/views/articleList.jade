@@ -39,15 +39,18 @@ block content
 								h3.fl #{item.title} 
 						if(user)
 							a(href="/article/delete/#{item._id}" onclick="return confirm('是否确定删除？')").art-op.fl [删除]
-							a(href="/article/edit/#{item._id}" target="blank").art-op [修改]
+							a(href="/article/edit/#{item._id}" target="blank").art-op.fl [修改]
 							if(item.status==0)
-								a(href="/article/release/#{item._id}/1" onclick="return confirm('是否确定发布?')").art-op [发布]
+								a(href="/article/release/#{item._id}/1" onclick="return confirm('是否确定发布?')").art-op.fl [发布]
 							else
-								a(href="/article/release/#{item._id}/0" onclick="return confirm('是否确定取消发布?')").art-op [取消发布]
+								a(href="/article/release/#{item._id}/0" onclick="return confirm('是否确定取消发布?')").art-op.fl [取消发布]
 							if(item.isTop==false)
-								a(href="/article/stick/#{item._id}/true" onclick="return confirm('是否确定置顶?')").art-op [置顶]
+								a(href="/article/stick/#{item._id}/true" onclick="return confirm('是否确定置顶?')").art-op.fl [置顶]
 							else
-								a(href="/article/stick/#{item._id}/false" onclick="return confirm('是否确定取消置顶')").art-op [取消置顶]
-						small.fc777.ml20 发布于：#{item.meta.createAt}
+								a(href="/article/stick/#{item._id}/false" onclick="return confirm('是否确定取消置顶')").art-op.fl [取消置顶]
+						small.fc777.ml20.fl 发布于：#{item.modifyAt} 
 						small.fr 作者：#{item.author}
-						p #{item.preface} 
+						if(item.preface)
+							p.preface.fl #{item.preface} 
+							a(href="/article/detail/#{item._id}" target="_blank").read-all.fl 查看全文
+						p.w100.fl 标签：

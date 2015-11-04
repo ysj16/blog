@@ -33,10 +33,8 @@ exports.list = function(req,res,next){
 	      	  .exec(function(err){if(err) console.log(err)})
 			  .then(function(articles){
 			  	articles.forEach(function(article,index){
-			  		var time = DateFormat(article.meta.createAt);
-			  		console.log(time)
-			  		articles[index].meta.createAt = ""
-			  		articles[index].meta.createAt = time
+			  		article.createAt = DateFormat(article.meta.createAt);
+			  		article.modifyAt = DateFormat(article.meta.modifyAt);
 			  	})
 			  	renderObj.articles = articles;
 				return res.render("articleList",renderObj);
@@ -167,6 +165,7 @@ exports.update = function(req,res){
 	param.author = req.body.author;
 	param.content = req.body.contents;
 	param.tags = [];
+	param["meta.modifyAt"] = Date.now();
 	Tag
 		.update({articles:{$in:[id]}},{$pull:{articles:id}},{multi:true})
 		.exec(function(err){
