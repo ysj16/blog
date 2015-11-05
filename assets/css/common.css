@@ -7,7 +7,7 @@ ol,ul {list-style:none;}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
 a{color:#333;text-decoration: none;}
 a:hover { color: #c00; }
-.cl:after{content:'.';clear:both;visibility:hidden}
+.cl:after{content:'.';display:block;height:0;clear:both;visibility:hidden}
 .cl{*display:inline-block;}
 .hidden{display:none;}
 .fr{float:right;_display:inline;}

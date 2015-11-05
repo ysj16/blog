@@ -8,6 +8,10 @@ block js
 
 block content
 	include layout/sidebar
+	ul
+		li.cl 
+			a sfsfsdf
+			a sfsdf
 	.main
 		div.pageNav
 			span.hd 共20页，每页20条记录
@@ -53,4 +57,7 @@ block content
 						if(item.preface)
 							p.preface.fl #{item.preface} 
 							a(href="/article/detail/#{item._id}" target="_blank").read-all.fl 查看全文
-						p.w100.fl 标签：
+						if(item.tags.length)
+							p.w100.fl 标签：
+								each tag in item.tags
+									a(href="##") #{tag.name} &nbsp;
