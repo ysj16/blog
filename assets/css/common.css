@@ -34,15 +34,16 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 
 /*边栏样式*/
 .sideBar{width:350px;border-left:1px solid #ddd;margin-top:20px;}
-.sideBar .box{width:316px;margin:20px auto 0 auto;padding-bottom:12px;border:2px solid #146EB4;border-radius: 4px}
+.sideBar .box{width:316px;margin:20px auto 0 auto;border:2px solid #146EB4;border-radius: 4px}
 .sideBar .box-hd{height: 35px;line-height:35px;background-color:#146EB4;text-indent: 1em;color:#fff;font-size: 16px;}
-.search{margin:12px 0px 0 25px;}
+.sideBar .box-bd{padding:5px 0;}
+.search{margin:5px 0 5px 25px;}
 .search .text{width:180px;height: 23px;font-size: 14px;border: 1px solid #aaa;padding-left:3px}
 .search .text:focus{border:1px solid #333;outline: none;}
 .search .btn{height: 26px;border:1px solid #aaa;background-color: #eee;}
+.sideBar .aboutMe{text-indent: 2em;font-size: 14px;}
 
-
-.main{margin-right: 350px;height: 100px;padding:30px;}
+.main{margin-right: 350px;padding:30px;overflow: hidden;}
 
 /*登录*/
 .log{float:right;margin-right:30px;line-height: 50px;font-size: 16px;color:#ddd;}

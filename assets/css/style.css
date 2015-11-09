@@ -11,7 +11,7 @@
 .m-box-bd .art-op{color:#ccc;margin-left: 8px;cursor: pointer;}
 .m-box-bd .read-all{font-size: 14px;font-weight:700;color:#146eb4;width: 100%;text-indent:1.2em;}
 
-.news li{line-height: 30px;}
+.news li{line-height: 25px;margin-bottom:8px;}
 .news .collect{color:#ccc;margin-left:8px;cursor: pointer;}
 
 /*分页*/

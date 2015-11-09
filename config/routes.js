@@ -3,14 +3,13 @@ var Index = require("../app/controllers/index");
 var News = require("../app/controllers/news");
 var User = require("../app/controllers/user");
 var Article = require("../app/controllers/article");
-
 module.exports = function(app){
 	app.use(function(req,res,next){
 		var user = req.session.user;
 		app.locals.user = user||null;
 		next();
 	})
-
+	require("../app/controllers/common")(app);
 	app.get("/",Index.index)
 
 	app.post("/user/login",User.login)

@@ -12,9 +12,7 @@ var schedule = require("node-schedule");
 var morgan = require("morgan");
 var app = new express();
 var port = process.env.PORT||3000;
-
 var dbUrl = 'mongodb://localhost/blog'
-
 mongoose.connect(dbUrl)
 var addModels = function(path){
 	fs
