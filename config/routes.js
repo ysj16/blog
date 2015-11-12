@@ -21,6 +21,7 @@ module.exports = function(app){
 
 
 	app.get("/article/list/:page?",Article.list)
+	app.get("/article/list/tag/:id?",Article.listTag)
 	app.get("/article/detail/:id",Article.show)
 	app.get("/article/edit/:id",Article.editArticle)
 	app.get("/article/add",User.loginRequired,Article.newArticle)

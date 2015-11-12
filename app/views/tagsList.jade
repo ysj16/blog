@@ -26,9 +26,7 @@ block content
 			a(href="/article/list/#{pages}").last 跳到最后
 		div.m-box
 			.m-box-hd 
-				h2.fl 原创文章
-				if(user)
-					a(href="/article/add").fr 写文章
+				h2.fl 类别：#{tagName}
 			ul.m-box-bd.news
 				each item in articles
 					li.cl
@@ -37,17 +35,6 @@ block content
 								h3.fl [置顶]#{item.title} 
 							else
 								h3.fl #{item.title} 
-						if(user)
-							a(href="/article/delete/#{item._id}" onclick="return confirm('是否确定删除？')").art-op.fl [删除]
-							a(href="/article/edit/#{item._id}").art-op.fl [修改]
-							if(item.status==0)
-								a(href="/article/release/#{item._id}/1" onclick="return confirm('是否确定发布?')").art-op.fl [发布]
-							else
-								a(href="/article/release/#{item._id}/0" onclick="return confirm('是否确定取消发布?')").art-op.fl [取消发布]
-							if(item.isTop==false)
-								a(href="/article/stick/#{item._id}/true" onclick="return confirm('是否确定置顶?')").art-op.fl [置顶]
-							else
-								a(href="/article/stick/#{item._id}/false" onclick="return confirm('是否确定取消置顶')").art-op.fl [取消置顶]
 						small.fc777.ml20.fl 发布于：#{item.modifyAt} 
 						small.fr 作者：#{item.author}
 						if(item.preface)

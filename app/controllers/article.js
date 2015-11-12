@@ -7,6 +7,7 @@ var DateFormat = function(date){
 	str += date.getFullYear() + "年" + (date.getMonth()+ 1) + "月" + date.getDay() + "日";
 	return str;
 }
+// 文章列表
 exports.list = function(req,res,next){
 	var page = req.params.page||1,renderObj={prev:1,next:page},query={};
 	if(!req.session.user||req.session.user.role!=1){
@@ -42,6 +43,42 @@ exports.list = function(req,res,next){
 	      })
   	}
 }
+// 按标签查看文章列表
+exports.listTag = function(req,res,next){
+	var page = req.params.page||1,renderObj={prev:1,next:page},query={};
+	if(+page != page||page==0) {
+		next();
+	}
+	var id = req.params.id;
+	var Article = require("../models/article");
+	var Tag = require("../models/tag");
+	Tag.findOne({_id:id}).exec(function(err,tag){
+		renderObj.tagName = tag.name;
+	})
+    var allDates = Article.find({tags:{$in:[id]}}).populate("tags").sort({isTop:-1}).sort({"meta.createAt":1});
+    allDates
+      .exec(function(err){if(err) console.log(err)})
+      .then(function(data){
+      	renderObj.pages = Math.ceil(data.length/20);//获取最大页码
+      	renderObj.page = page - 0;
+      	if(page>1)
+      		renderObj.prev = page-1;
+      	if(page<renderObj.pages)
+      		renderObj.next = page - 1 +2 ;
+      	allDates//分页
+	      .skip(20*(page-1))
+	      .limit(20)
+      	  .exec(function(err){if(err) console.log(err)})
+		  .then(function(articles){
+		  	articles.forEach(function(article,index){
+		  		article.createAt = DateFormat(article.meta.createAt);
+		  		article.modifyAt = DateFormat(article.meta.modifyAt);
+		  	})
+		  	renderObj.articles = articles;
+			return res.render("tagsList",renderObj);
+		  })
+      })
+}
 //文章查看页面
 exports.show  = function(req,res){
 	var marked = require('marked');
@@ -61,6 +98,15 @@ exports.show  = function(req,res){
 	  }
 	})
 	var id = req.params.id,obj = {};
+	//若非管理员访问，访问量加1
+	if(!req.session.user||req.session.user.role!=1){
+		Article
+			.update({_id:id},{$inc:{pv:1}})
+			.exec(function(err){
+				if(err)
+					console.log(err)
+			})
+	}
 	Article
 		.findOne({_id:id})
 		.populate("tags")

@@ -5,18 +5,32 @@ div.sideBar.fr
 			form.search
 				input.text(type='text')
 				input.btn(type="submit" value="站内搜索")
-			form.search
-				input.text(type='text')
-				input.btn(type="submit" value="百度搜索")
+			div.search
+				input#baidu-text.text(type='text')
+				input#baidu-btn.btn(type="button" value="百度搜索")
 	div.box
 		div.box-hd 关于我
 		div.box-bd.aboutMe 爱前端，爱dota，爱Eason
 	div.box
 		div.box-hd 文章分类
 		div.box-bd.tags
+			ul.cl
+				each item in allTags
+					li.tags-item 
+						a.blue(href="/article/list/tag/#{item._id}") #{item.name}(<i class="color">#{item.articles.length}</i>)
 	div.box
 		div.box-hd 热门文章
-		div.box-bd.hot #{test}
+		div.box-bd.hot 
+			ul
+				each item in hots
+					li.hots-item 
+						a.blue(href="/article/detail/#{item._id}") #{item.title}
+						span.small （历史访问量：#{item.pv}次）
 	div.box
 		div.box-hd 最新文章
-		div.box-bd
+		div.box-bd.fresh
+			ul
+				each item in fresh
+					li.fresh-item
+						a.blue(href="/article/detail/#{item._id}") #{item.title}
+						span.small （发布于：#{item.createAt}）

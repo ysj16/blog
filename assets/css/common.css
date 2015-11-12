@@ -18,6 +18,7 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .fc777{color:#777;}
 .ml20{margin-left:20px;}
 .w100{width:100%;}
+.blue{color:#146eb4;}
 
 /*公用样式*/
 .btn{height: 30px;border:none;border-radius: 4px;}
@@ -33,7 +34,7 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .nav li:hover{background-color: #ddd;}
 
 /*边栏样式*/
-.sideBar{width:350px;border-left:1px solid #ddd;margin-top:20px;}
+.sideBar{width:350px;border-left:1px solid #ddd;margin-top:20px;font-size: 14px}
 .sideBar .box{width:316px;margin:20px auto 0 auto;border:2px solid #146EB4;border-radius: 4px}
 .sideBar .box-hd{height: 35px;line-height:35px;background-color:#146EB4;text-indent: 1em;color:#fff;font-size: 16px;}
 .sideBar .box-bd{padding:5px 0;}
@@ -42,6 +43,11 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .search .text:focus{border:1px solid #333;outline: none;}
 .search .btn{height: 26px;border:1px solid #aaa;background-color: #eee;}
 .sideBar .aboutMe{text-indent: 2em;font-size: 14px;}
+.sideBar .tags-item{float:left;width:50%;text-indent: 2em;}
+.sideBar .tags-item .color{color:#999;}
+.sideBar .hots-item,.sideBar .fresh-item{text-indent: 2em;}
+
+.sideBar .small{color:#999;font-size: 12px;}
 
 .main{margin-right: 350px;padding:30px;overflow: hidden;}
 

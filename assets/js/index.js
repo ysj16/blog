@@ -1,4 +1,10 @@
 ~function(){
+	var $bdSearch = document.getElementById("baidu-btn");
+	C.addHandler($bdSearch,"click",function(e){
+		var text = document.getElementById("baidu-text").value;
+		window.open("https://www.baidu.com/s?wd="+text);
+	})
+
 	var $colBox = C.getElementsByClass("news")[0];
 	C.addHandler($colBox,"click",function(e){
 		var e = e||window.event;
@@ -19,7 +25,6 @@
 					}
 				}
 			})
-			//alert(target.getAttribute("data-id"))
 		}
 	})
 }()
