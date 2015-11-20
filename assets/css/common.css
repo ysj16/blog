@@ -49,7 +49,7 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 
 .sideBar .small{color:#999;font-size: 12px;}
 
-.main{margin-right: 350px;padding:30px;overflow: hidden;}
+.main,.addComment{margin-right: 350px;padding:30px;overflow: hidden;}
 
 /*登录*/
 .log{float:right;margin-right:30px;line-height: 50px;font-size: 16px;color:#ddd;}
@@ -58,3 +58,6 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .loginBox .btn{margin:5px 0 0 150px;}
 .loginBox input{width:250px;}
 
+/*评论*/
+.addComment .form-wrap{margin-bottom:10px;}
+.addComment input{}

@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 var Tag = mongoose.model("Tag");
 var Article = mongoose.model("Article");
-//require("/app/controllers/common")
 var DateFormat = function(date){
 	var str = "";
 	str += date.getFullYear() + "年" + (date.getMonth()+ 1) + "月" + date.getDay() + "日";

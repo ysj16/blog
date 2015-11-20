@@ -8,4 +8,22 @@ block js
 
 block content
 	include layout/sidebar
-	.main.markdown-body !{content}#{createAt}
+	.main.markdown-body 
+		h2 #{title}
+		!{content} #{createAt}
+	form(action="/comment/add" method="post").addComment
+		h2 发布评论
+		input(type="hidden" name="id" value="#{id}")
+		input(type="hidden" name="to")
+		.form-wrap
+			input(type="text" id="name" name="name")
+			label(for="name") 名称（必须）
+		.form-wrap
+			input(type="text" id="email" name="email")
+			label(for="email") 邮箱（必须，不会被公开）
+		.form-wrap
+			input(type="text" id="url" name="url")
+			label(for="url") 网站 (选填)
+		.form-wrap
+			textarea(name="content", cols="30", rows="10")
+		input(type="submit" value="提交").btn

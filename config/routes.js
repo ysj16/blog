@@ -3,6 +3,7 @@ var Index = require("../app/controllers/index");
 var News = require("../app/controllers/news");
 var User = require("../app/controllers/user");
 var Article = require("../app/controllers/article");
+var Comment = require("../app/controllers/comment")
 module.exports = function(app){
 	app.use(function(req,res,next){
 		var user = req.session.user;
@@ -17,6 +18,7 @@ module.exports = function(app){
 	app.get("/login",User.loginPage)
 
 	app.get("/news/:page?",News.list)
+	app.get("/news/collect/list",News.collectList)
 	app.get("/news/collect",User.loginRequired,News.collect)
 
 
@@ -31,6 +33,8 @@ module.exports = function(app){
 	app.post("/article/update",User.loginRequired,Article.update)
 	app.get("/article/delete/:id",User.loginRequired,Article.delete)
 	
+	app.post("/comment/add",Comment.add)
+
 	app.get("*",function(req,res){
 		res.writeHead(404);
 		res.write("this is 404 page")
