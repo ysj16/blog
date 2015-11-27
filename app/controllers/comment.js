@@ -12,9 +12,21 @@ exports.add = function(req,res){
 		params.to = req.body.to;
 	var comment = new Comment(params);
 	if(params.name&&params.email&&params.content){
-		comment.save(function(){console.log(arguments)});
-		console.log(params)
+		comment
+			.save(function(){
+			 	Comment
+			 		.update({_id:params.to},{$push:{replies:comment._id}})
+			 		.exec(function(err){
+			 			if(err) console.log(err)
+			 		})
+			})
+
 	}
 	return res.redirect("/article/detail/" + req.body.id)
 
+}
+exports.get = function(articleId){
+	return Comment
+			.find({articleId:articleId,to:null})
+			.populate("replies")
 }

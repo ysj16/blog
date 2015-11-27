@@ -48,7 +48,7 @@ block content
 								a(href="/article/stick/#{item._id}/true" onclick="return confirm('是否确定置顶?')").art-op.fl [置顶]
 							else
 								a(href="/article/stick/#{item._id}/false" onclick="return confirm('是否确定取消置顶')").art-op.fl [取消置顶]
-						small.fc777.ml20.fl 发布于：#{item.modifyAt} 
+						small.fc777.ml20.fl 发布于：#{moment(item.meta.createAt).format("YYYY年MM月DD日 HH:mm")} 
 						small.fr 作者：#{item.author}
 						if(item.preface)
 							p.preface.fl #{item.preface} 

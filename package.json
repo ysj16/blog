@@ -34,6 +34,7 @@
     "iconv-lite": "^0.4.11",
     "markdown": "^0.5.0",
     "marked": "^0.3.5",
+    "moment": "^2.10.6",
     "mongoose": "^4.1.8",
     "morgan": "^1.6.1",
     "node-schedule": "^0.2.9"

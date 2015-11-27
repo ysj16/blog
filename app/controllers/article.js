@@ -1,11 +1,8 @@
 var mongoose = require("mongoose");
 var Tag = mongoose.model("Tag");
 var Article = mongoose.model("Article");
-var DateFormat = function(date){
-	var str = "";
-	str += date.getFullYear() + "年" + (date.getMonth()+ 1) + "月" + date.getDay() + "日";
-	return str;
-}
+var Comment = require("../controllers/comment.js");
+var moment = require("moment");
 // 文章列表
 exports.list = function(req,res,next){
 	var page = req.params.page||1,renderObj={prev:1,next:page},query={};
@@ -32,10 +29,6 @@ exports.list = function(req,res,next){
 		      .limit(20)
 	      	  .exec(function(err){if(err) console.log(err)})
 			  .then(function(articles){
-			  	articles.forEach(function(article,index){
-			  		article.createAt = DateFormat(article.meta.createAt);
-			  		article.modifyAt = DateFormat(article.meta.modifyAt);
-			  	})
 			  	renderObj.articles = articles;
 				return res.render("articleList",renderObj);
 			  })
@@ -69,10 +62,6 @@ exports.listTag = function(req,res,next){
 	      .limit(20)
       	  .exec(function(err){if(err) console.log(err)})
 		  .then(function(articles){
-		  	articles.forEach(function(article,index){
-		  		article.createAt = DateFormat(article.meta.createAt);
-		  		article.modifyAt = DateFormat(article.meta.modifyAt);
-		  	})
 		  	renderObj.articles = articles;
 			return res.render("tagsList",renderObj);
 		  })
@@ -112,12 +101,15 @@ exports.show  = function(req,res){
 		.then(function(data){
 			obj.content = marked(data.content);
 			obj.author = data.author;
-			obj.title = data.title;
+			obj.title = obj.webTitle = data.title;
 			obj.id = data._id;
 			obj.tags = data.tags;
-			obj.createAt = DateFormat(data.meta.createAt);
-			obj.modifyAt = DateFormat(data.meta.modifyAt);
-			return res.render("article",obj);
+			obj.meta = data.meta;
+			obj.moment = moment;
+			Comment.get(id).then(function(comments){
+				obj.comments = comments;
+				return res.render("article",obj);
+			})
 		})
 }
 //文章添加页面
@@ -141,8 +133,6 @@ exports.editArticle = function(req,res){
 				obj.tags += item.name + " ";
 			})
 			obj.tags = obj.tags.trim();
-			obj.createAt = DateFormat(data.meta.createAt);
-			obj.modifyAt = DateFormat(data.meta.modifyAt);
 			return res.render("articleEdit",obj);
 		})
 }

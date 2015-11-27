@@ -5,25 +5,95 @@ block css
 	link(rel="stylesheet" href="/css/markdown.css")
 block js
 	script(src="/js/common/Custom.js")
+	script.
+		~function(){
+			var cList = document.getElementById("commentList"),
+				addCom = C.getElementsByClass("addComment")[0];
+			C.addHandler(cList,"click",function(e){
+				var e = e || window.event,target = e.target||e.srcElement;
+				if(C.hasClass(target,"J-reply")){
+					C.getElementsByClass("J-toId",addCom)[0].value = target.getAttribute("data-id")
+					target.parentNode.appendChild(addCom)
+				}
+
+			})
+			window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","sqq","hx","fx","youdao","sdo","evernotecn"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16}};
+			with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
+		}()
 
 block content
 	include layout/sidebar
 	.main.markdown-body 
 		h2 #{title}
-		!{content} #{createAt}
+		!{content} #{moment(meta.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+	<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享文章</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记">印象笔记</a></div>
 	form(action="/comment/add" method="post").addComment
 		h2 发布评论
 		input(type="hidden" name="id" value="#{id}")
-		input(type="hidden" name="to")
+		input(class="J-toId" type="hidden" name="to")
 		.form-wrap
-			input(type="text" id="name" name="name")
-			label(for="name") 名称（必须）
+			label 
+				input(type="text" name="name").text 
+				名称（必须）
 		.form-wrap
-			input(type="text" id="email" name="email")
-			label(for="email") 邮箱（必须，不会被公开）
+			label 
+				input(type="text" name="email").text 
+				邮箱（必须，不会被公开）
 		.form-wrap
-			input(type="text" id="url" name="url")
-			label(for="url") 网站 (选填)
+			label
+				input(type="text" name="url").text
+				网站 (选填)
 		.form-wrap
-			textarea(name="content", cols="30", rows="10")
-		input(type="submit" value="提交").btn
+			textarea(name="content", cols="60", rows="10").content
+		input(type="submit" value="提交评论").btn
+	ol#commentList.comments
+		each item,index in comments
+			if(index%2==1)
+				li.comment-wrap.odd
+					if(item.webSite)
+						.comment-user
+							a(href="http://#{item.webSite}") #{item.name}
+							说道:
+					else
+						.comment-user #{item.name}说道:
+					small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+					.comment-content !{item.content.replace(/\n/g,"<br />")}
+					if(item.replies.length<=20)
+						a(class="J-reply" href="javascript:;" data-id="#{item._id}") 回复
+					if(item.replies.length)
+						ol.comments
+							each item2 in item.replies
+								li.comment-wrap
+									if(item.webSite)
+										.comment-user
+											a(href="http://#{item2.webSite}") #{item2.name}
+											说道:
+									else
+										.comment-user #{item2.name}说道:					
+									small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+									.comment-content !{item.content.replace(/\n/g,"<br />")}
+			else
+				li.comment-wrap
+					if(item.webSite)
+						.comment-user
+							a(href="http://#{item.webSite}") #{item.name}
+							说道:
+					else
+						.comment-user #{item.name}说道:
+					small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+					.comment-content !{item.content.replace(/\n/g,"<br />")}
+					if(item.replies.length<=20)
+						a(class="J-reply" href="javascript:;" data-id="#{item._id}") 回复
+					if(item.replies.length)
+						ol.comments
+							each item2 in item.replies
+								li.comment-wrap
+									if(item.webSite)
+										.comment-user
+											a(href="http://#{item2.webSite}") #{item2.name}
+											说道:
+									else
+										.comment-user #{item2.name}说道:					
+									small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+									.comment-content !{item.content.replace(/\n/g,"<br />")}

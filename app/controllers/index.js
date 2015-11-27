@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var C = require("/blog/app/controllers/custom");
 exports.index = function(req,res){
 	var News = mongoose.model("News");
 	var Spider = mongoose.model("Spider");
@@ -13,9 +12,6 @@ exports.index = function(req,res){
 	  	Article
 	  		.find({isTop:true})
 	  		.exec(function(err,tops){
-	  			tops.forEach(function(item,index){
-	  				item.createAt = C.DateFormat(item.meta.createAt);
-	  			})
 	  			renderObj.tops = tops;
 				return res.render("index",renderObj);
 	  		})

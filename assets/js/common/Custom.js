@@ -33,26 +33,27 @@ var C = Custom = {
         ele.className = cls;
     },
     /*由class获取dom*/
-    getElementsByClass:function(cls,tag){
+    getElementsByClass:function(cls,parent){
         if(document.getElementsByClassName){
-            this.getElementsByClass = function(cls){
-                return document.getElementsByClassName(cls);
+            this.getElementsByClass = function(cls,parent){
+                var ele = parent || document;
+                return ele.getElementsByClassName(cls);
             }
         }
         else{
-            this.getElementsByClass = function(cls,tag){
-                var eles = [],tags;
-                tag = tag||"*";
-                tags = document.getElementsByTagName(tag);
-                for(var i = 0,length=tags.length;i<length;i++){
-                    if(Custom.hasClass(tags[i],cls)){
-                        eles.push(tags[i])
+            this.getElementsByClass = function(cls,parent){
+                var eles = [],all;
+                parentEle = parent || document;
+                all = parentEle.getElementsByTagName("*");
+                for(var i = 0,length=all.length;i<length;i++){
+                    if(Custom.hasClass(all[i],cls)){
+                        eles.push(all[i])
                     }
                 }
                 return eles;
             }
         }
-        return this.getElementsByClass(cls,tag);
+        return this.getElementsByClass(cls,parent);
     },
     /*字符串处理*/
     //去掉首尾空字符

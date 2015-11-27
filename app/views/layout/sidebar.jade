@@ -33,4 +33,4 @@ div.sideBar.fr
 				each item in fresh
 					li.fresh-item
 						a.blue(href="/article/detail/#{item._id}") #{item.title}
-						span.small （发布于：#{item.createAt}）
+						span.small （发布于：#{moment(item.createAt).format("YYYY年MM月DD日")}）

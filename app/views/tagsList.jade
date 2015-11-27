@@ -35,7 +35,7 @@ block content
 								h3.fl [置顶]#{item.title} 
 							else
 								h3.fl #{item.title} 
-						small.fc777.ml20.fl 发布于：#{item.modifyAt} 
+						small.fc777.ml20.fl 发布于：#{moment(item.modifyAt).format("YYYY年MM月DD日 HH:mm:ss")} 
 						small.fr 作者：#{item.author}
 						if(item.preface)
 							p.preface.fl #{item.preface} 

@@ -1,9 +1,10 @@
 var mongoose = require("mongoose");
 var Tag = mongoose.model("Tag");
 var Article = mongoose.model("Article");
-var C = require("/blog/app/controllers/custom");
+var moment = require("moment");
 
 module.exports = function(app){
+	app.locals.moment = moment;
 	Tag
 		.find()
 		.exec(function(err,tags){
@@ -21,9 +22,6 @@ module.exports = function(app){
 		.sort({"meta.createAt":-1})
 		.limit(15)
 		.exec(function(err,fresh){
-			fresh.forEach(function(item){
-				item.createAt = C.DateFormat(item.meta.createAt);
-			})
 			app.locals.fresh=fresh;
 		})
 }

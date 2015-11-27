@@ -16,7 +16,7 @@ block content
 				each item in tops
 					li
 						h3 [置顶]#{item.title}
-							small #{item.author} 发布于 #{item.createAt}
+							small #{item.author} 发布于 #{moment(item.meta.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
 						if(item.preface)
 							p.preface #{item.preface} 
 							a(href="/article/detail/#{item._id}").read-all.fl 查看全文

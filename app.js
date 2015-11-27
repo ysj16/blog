@@ -14,6 +14,9 @@ var app = new express();
 var port = process.env.PORT||3000;
 var dbUrl = 'mongodb://localhost/blog'
 mongoose.connect(dbUrl)
+
+app.set("env","production")
+
 var addModels = function(path){
 	fs
 	  .readdirSync(path)
@@ -33,11 +36,13 @@ addModels("./app/models");//加载路径下的所有模块
 app.set("views","./app/views");//设置模板引擎以及目录
 app.set("view engine","jade");
 app.use(session({
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-	secret:"blog",
+	secret:"blog", 
+	cookie: {maxAge: 100*60*60*24*15 },
 	store:new mongoStore({
-		url:dbUrl,
+		url:'mongodb://localhost/blog',
+		db:"blog",
 		collection:"sessions"
 	})
 }))
@@ -108,10 +113,6 @@ var job = schedule.scheduleJob(rule,function(){
 			})
 		})
 })
-
-// var Article = mongoose.model("Article");
-// var art = new Article({title:"test",author:"yushangjiang"});
-// art.save()
 
 require("./config/routes")(app);
 
