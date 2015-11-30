@@ -18,7 +18,7 @@ exports.list = function(req,res,next){
 	      	if(page<renderObj.pages)
 	      		renderObj.next = page - 1 +2 ;
 	      	allDates//分页
-		      .sort("date")
+	      	  .sort({_id:-1})
 		      .skip(20*(page-1))
 		      .limit(20)
 	      	  .exec(function(err){if(err) console.log(err)})

@@ -6,7 +6,6 @@ var Article = require("../app/controllers/article");
 var Comment = require("../app/controllers/comment")
 module.exports = function(app){
 	app.use(function(req,res,next){
-		console.log(req.session)
 		var user = req.session.user;
 		app.locals.user = user||null;
 		next();

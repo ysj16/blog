@@ -107,7 +107,7 @@ var job = schedule.scheduleJob(rule,function(){
 				},function(artDatas){
 					artDatas.forEach(function(item){
 						var New = new News(item);
-						New.save();
+						New.save()
 					})
 				})
 			})
