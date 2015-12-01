@@ -47,7 +47,7 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .sideBar .tags-item .color{color:#999;}
 .sideBar .hots-item,.sideBar .fresh-item{text-indent: 2em;}
 
-.sideBar .small{color:#999;font-size: 12px;}
+.sideBar .small,.tips{color:#999;font-size: 12px;}
 
 .main{margin-right: 350px;padding:30px;overflow: hidden;}
 
@@ -59,7 +59,6 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .loginBox input{width:250px;}
 
 /*评论*/
-.bdsharebuttonbox{margin-left:30px;}
 .addComment{margin:10px 30px;}
 .addComment h2{font-size: 16px;}
 .comments .addComment{margin:0 10px;}

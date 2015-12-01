@@ -26,8 +26,9 @@ block content
 	include layout/sidebar
 	.main.markdown-body 
 		h2 #{title}
-		!{content} #{moment(meta.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-	<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享文章</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记">印象笔记</a></div>
+		!{content} 
+		.tips  发布于#{moment(meta.createAt).format("YYYY年MM月DD日 HH:mm:ss")}--阅读量:(#{pv})
+		<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享文章</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记">印象笔记</a></div>
 	form(action="/comment/add" method="post").addComment
 		h2 发布评论
 		input(type="hidden" name="id" value="#{id}")

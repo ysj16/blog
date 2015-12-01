@@ -104,6 +104,7 @@ exports.show  = function(req,res){
 			obj.title = obj.webTitle = data.title;
 			obj.id = data._id;
 			obj.tags = data.tags;
+			obj.pv = data.pv;
 			obj.meta = data.meta;
 			obj.moment = moment;
 			Comment.get(id).then(function(comments){
