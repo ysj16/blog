@@ -51,6 +51,8 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 
 .main{margin-right: 350px;padding:30px;overflow: hidden;}
 
+
+
 /*登录*/
 .log{float:right;margin-right:30px;line-height: 50px;font-size: 16px;color:#ddd;}
 .user{float:right;margin-right: 15px;line-height: 50px;font-size: 16px;}
