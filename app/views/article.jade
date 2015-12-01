@@ -72,8 +72,8 @@ block content
 											说道:
 									else
 										.comment-user #{item2.name}说道:					
-									small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-									.comment-content !{item.content.replace(/\n/g,"<br />")}
+									small.comment-time #{moment(item2.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+									.comment-content !{item2.content.replace(/\n/g,"<br />")}
 			else
 				li.comment-wrap
 					if(item.webSite)
@@ -96,5 +96,5 @@ block content
 											说道:
 									else
 										.comment-user #{item2.name}说道:					
-									small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-									.comment-content !{item.content.replace(/\n/g,"<br />")}
+									small.comment-time #{moment(item2.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
+									.comment-content !{item2.content.replace(/\n/g,"<br />")}
