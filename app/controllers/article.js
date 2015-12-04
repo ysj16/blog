@@ -45,7 +45,8 @@ exports.listTag = function(req,res,next){
 	var Article = require("../models/article");
 	var Tag = require("../models/tag");
 	Tag.findOne({_id:id}).exec(function(err,tag){
-		renderObj.tagName = tag.name;
+		if(tag)
+			renderObj.tagName = tag.name;
 	})
     var allDates = Article.find({tags:{$in:[id]}}).populate("tags").sort({isTop:-1}).sort({"meta.createAt":1});
     allDates
