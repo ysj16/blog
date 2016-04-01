@@ -1,3 +1,4 @@
 .newArt input{width:100%;}
 .newArt .preface{width:100%;height: 100px;}
 .newArt .contents{width:100%;height: 1000px;}
+.imgPanel img{float:left;width:150px;height:100px;}

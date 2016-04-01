@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
+var fs = require("fs");
 var Tag = mongoose.model("Tag");
 var Article = mongoose.model("Article");
 var Comment = require("../controllers/comment.js");
+var File = require("../controllers/File");
 var moment = require("moment");
 // 文章列表
 exports.list = function(req,res,next){
@@ -116,7 +118,9 @@ exports.show  = function(req,res){
 }
 //文章添加页面
 exports.newArticle = function(req,res){
-	res.render("addArticle")
+	var obj={};
+	obj.dirs = File.walkDir("./uploads/");
+	res.render("addArticle",obj)
 }
 //文章修改页面
 exports.editArticle = function(req,res){
@@ -131,6 +135,7 @@ exports.editArticle = function(req,res){
 			obj.title = data.title;
 			obj.id = data._id;
 			obj.tags = "";
+			obj.dirs = File.walkDir("./uploads/");
 			data.tags.forEach(function(item,index){
 				obj.tags += item.name + " ";
 			})
@@ -171,6 +176,7 @@ exports.add = function(req,res){
 		param.tags = [];
 	var article = new Article(param);
 	var tags = req.body.tags.split(" ");
+
 	tags.forEach(function(item,index){
 		Tag
 			.findOne({name:item})
@@ -247,4 +253,8 @@ exports.delete = function(req,res){
 			if(err) console.log(err);
 			return res.redirect("/article/list/");
 		})
+}
+
+exports.showPic = function(req,res){
+	return res.end();
 }

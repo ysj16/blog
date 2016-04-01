@@ -15,8 +15,11 @@ var port = process.env.PORT||3000;
 var dbUrl = 'mongodb://localhost/blog'
 mongoose.connect(dbUrl)
 
-app.set("env","production")
-
+if(app.get("env")=="production"){
+	app.locals.isBuild = "/build_assets";
+}else{
+	app.locals.isBuild = "";
+}
 var addModels = function(path){
 	fs
 	  .readdirSync(path)
@@ -48,7 +51,13 @@ app.use(session({
 }))
 
 app.use(compress());
-app.use(express.static('assets'));
+if(app.get("env")=="production"){//如果为生产环境加载构建之后的静态文件目录
+	app.use(express.static('build_assets'));
+}
+else{//否则加载源文件
+	app.use(express.static('assets'));
+}
+app.use("/uploads",express.static('uploads'));
 app.use(bodyParser.urlencoded({extended:false}));
 
 if(app.get("env")=="development"){

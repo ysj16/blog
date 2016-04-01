@@ -1,59 +1,60 @@
 extends layout/layout
 block css
 	link(rel="stylesheet" href="/css/common.css")
-	link(rel="stylesheet" href="/css/style.css")
 block js
-	script(src="/js/common/Custom.js")
-	script(src="/js/index.js")
+	if(user)
+		script(src="/js/common/Custom.js")
+		script(src="/js/admin.js")
 
 block content
-	include layout/sidebar
-	.main
-		div.pageNav
-			span.hd 共20页，每页20条记录
-			a(href="/article/list/#{prev}").prev 上一页
-			-for(var i=1;i<=pages;i++){
-				if i<=5||i>=pages-2
-					if(i==page)
-						a(class="on",href="/article/list/#{i}").page #{i}
-					else
-						a(href="/article/list/#{i}").page #{i}
-				else 
-				if i==6
-					a(href="##").page ...
-			-}
-			a(href="/article/list/#{next}").next 下一页
-			a(href="/article/list/#{pages}").last 跳到最后
-		div.m-box
-			.m-box-hd 
-				h2.fl 原创文章
-				if(user)
-					a(href="/article/add").fr 写文章
-			ul.m-box-bd.news
-				each item in articles
-					li.cl
-						a(href="/article/detail/#{item._id}").fl
-							if(item.isTop==true)
-								h3.fl [置顶]#{item.title} 
-							else
-								h3.fl #{item.title} 
-						if(user)
-							a(href="/article/delete/#{item._id}" onclick="return confirm('是否确定删除？')").art-op.fl [删除]
-							a(href="/article/edit/#{item._id}").art-op.fl [修改]
-							if(item.status==0)
-								a(href="/article/release/#{item._id}/1" onclick="return confirm('是否确定发布?')").art-op.fl [发布]
-							else
-								a(href="/article/release/#{item._id}/0" onclick="return confirm('是否确定取消发布?')").art-op.fl [取消发布]
-							if(item.isTop==false)
-								a(href="/article/stick/#{item._id}/true" onclick="return confirm('是否确定置顶?')").art-op.fl [置顶]
-							else
-								a(href="/article/stick/#{item._id}/false" onclick="return confirm('是否确定取消置顶')").art-op.fl [取消置顶]
-						small.fc777.ml20.fl 发布于：#{moment(item.meta.createAt).format("YYYY年MM月DD日 HH:mm")} 
-						small.fr 作者：#{item.author}
-						if(item.preface)
-							p.preface.fl #{item.preface} 
-							a(href="/article/detail/#{item._id}").read-all.fl 查看全文
-						if(item.tags.length)
-							p.w100.fl 标签：
-								each tag in item.tags
-									a(href="##") #{tag.name} &nbsp;
+	.body.cl
+		include layout/sidebar
+		.main
+			div.pageNav
+				span.hd 共20页，每页20条记录
+				a(href="/article/list/#{prev}").prev 上一页
+				-for(var i=1;i<=pages;i++){
+					if i<=5||i>=pages-2
+						if(i==page)
+							a(class="on",href="/article/list/#{i}").page #{i}
+						else
+							a(href="/article/list/#{i}").page #{i}
+					else 
+					if i==6
+						a(href="##").page ...
+				-}
+				a(href="/article/list/#{next}").next 下一页
+				a(href="/article/list/#{pages}").last 跳到最后
+			div.m-box
+				.m-box-hd 
+					h2.fl 原创文章
+					if(user)
+						a(href="/article/add").fr 写文章
+				ul.m-box-bd.news
+					each item in articles
+						li.cl
+							a(href="/article/detail/#{item._id}").fl
+								if(item.isTop==true)
+									h3.fl [置顶]#{item.title} 
+								else
+									h3.fl #{item.title} 
+							if(user)
+								a(href="/article/delete/#{item._id}" onclick="return confirm('是否确定删除？')").art-op.fl [删除]
+								a(href="/article/edit/#{item._id}").art-op.fl [修改]
+								if(item.status==0)
+									a(href="/article/release/#{item._id}/1" onclick="return confirm('是否确定发布?')").art-op.fl [发布]
+								else
+									a(href="/article/release/#{item._id}/0" onclick="return confirm('是否确定取消发布?')").art-op.fl [取消发布]
+								if(item.isTop==false)
+									a(href="/article/stick/#{item._id}/true" onclick="return confirm('是否确定置顶?')").art-op.fl [置顶]
+								else
+									a(href="/article/stick/#{item._id}/false" onclick="return confirm('是否确定取消置顶')").art-op.fl [取消置顶]
+							small.fc777.ml20.fl 发布于：#{moment(item.meta.createAt).format("YYYY年MM月DD日 HH:mm")} 
+							small.fr 作者：#{item.author}
+							if(item.preface)
+								p.preface.fl #{item.preface} 
+								a(href="/article/detail/#{item._id}").read-all.fl 查看全文
+							if(item.tags.length)
+								p.w100.fl 标签：
+									each tag in item.tags
+										a(href="##") #{tag.name} &nbsp;

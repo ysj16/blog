@@ -17,7 +17,6 @@ module.exports = function(grunt) {
     //     }
     //   },
     // },
-
     nodemon: {
       dev: {
         options: {
@@ -35,9 +34,32 @@ module.exports = function(grunt) {
         }
       }
     },
+    uglify: {
+      my_target: {
+        files: [{
+          expand: true,
+          cwd: 'assets',
+          src: '**/*.js',
+          dest: 'build_assets'
+        }]
+      }
+    },
+    cssmin: { 
+      options : { 
+          compatibility : 'ie8', //设置兼容模式 
+          noAdvanced : true //取消高级特性 
+      },
+      minify: { 
+          expand: true, 
+          cwd: 'assets', //相对路径
+          src: 'css/*.css', 
+          dest: 'build_assets', 
+          ext: '.css' 
+      } 
+    },
 
-    concurrent: {
-      tasks: ['nodemon', 'watch', 'less', 'uglify', 'jshint'],
+    concurrent: {//并行运行，加快构建速度
+      tasks: ['nodemon', 'cssmin'],
       options: {
         logConcurrentOutput: true
       }
@@ -45,16 +67,18 @@ module.exports = function(grunt) {
   })
 
   //grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-nodemon')
-  grunt.loadNpmTasks('grunt-concurrent')
+  grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-concurrent');
+
   // grunt.loadNpmTasks('grunt-mocha-test')
   // grunt.loadNpmTasks('grunt-contrib-less')
-  // grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-contrib-uglify')
   // grunt.loadNpmTasks('grunt-contrib-jshint')
 
   grunt.option('force', true)
 
-  grunt.registerTask('default', ['nodemon'])
+  grunt.registerTask('default', ['uglify','cssmin','nodemon'])
 
   //grunt.registerTask('test', ['mochaTest'])
 }

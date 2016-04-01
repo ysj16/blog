@@ -41,7 +41,7 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .search{margin:5px 0 5px 25px;}
 .search .text{width:180px;height: 23px;font-size: 14px;border: 1px solid #aaa;padding-left:3px}
 .search .text:focus{border:1px solid #333;outline: none;}
-.search .btn{height: 26px;border:1px solid #aaa;background-color: #eee;}
+.search .btn{display:inline-block;padding:0 5px;height: 26px;line-height:26px;margin-left:10px;border:1px solid #aaa;background-color: #eee;}
 .sideBar .aboutMe{text-indent: 2em;font-size: 14px;}
 .sideBar .tags-item{float:left;width:50%;text-indent: 2em;}
 .sideBar .tags-item .color{color:#999;}
@@ -100,3 +100,6 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .comment-time,.comment-content{font:500 12px/1.5 "microsoft yahei";}
 .comment-time{color:#999;}
 .comment-content{margin:5px 0;}
+
+/*底部*/
+.footer{margin-top:80px;padding:20px 0;border-top:2px solid #146EB4;text-align: center;}

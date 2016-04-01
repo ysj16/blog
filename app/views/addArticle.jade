@@ -3,10 +3,21 @@ block css
 	link(rel="stylesheet" href="/css/common.css")
 	link(rel="stylesheet" href="/css/admin.css")
 block js
-	script(src="/js/common/Custom.js")
+	if(user)
+		script(src="/js/common/Custom.js")
+		script(src="/js/admin.js")
 block content
 	include layout/sidebar
 	div.main
+		form(id = "ImgUpload" method="POST" enctype="multipart/form-data")
+			select#SelRoot
+				option(value=0) --请选择目录--
+				each item,index in dirs
+					option #{item}
+			input(id="File" name="pictures",type="file",multiple="multiple")
+			input(name="path" id="Path" type="text" placeholder="请输入目录")
+			button(type="submit") 上传
+			div#imgPanel.cl.imgPanel
 		form(method="POST" action="").newArt
 			input(name="title",type="text",placeholder="标题（必填）").input
 			input(name="author",type="text",placeholder="作者").input

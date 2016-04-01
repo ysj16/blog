@@ -9,7 +9,7 @@ var tagSchema = new Schema({
 	},
 	articles:[{
 		type:ObjectId,
-		ref:"article"
+		ref:"Article"
 	}]
 })
 module.exports = tagSchema;

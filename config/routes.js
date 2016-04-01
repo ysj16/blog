@@ -1,9 +1,27 @@
 var mongoose = require("mongoose");
+var fs = require("fs");
+var multer = require("multer");
 var Index = require("../app/controllers/index");
 var News = require("../app/controllers/news");
 var User = require("../app/controllers/user");
 var Article = require("../app/controllers/article");
 var Comment = require("../app/controllers/comment")
+var File = require("../app/controllers/File")
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+  	var path = req.query.path;
+  	if(!fs.existsSync(path))
+  		fs.mkdirSync(path);
+    cb(null, path)
+  },
+  filename: function (req, file, cb) {
+    cb(null,file.originalname)
+  }
+})
+
+
+var upload = multer({ storage: storage })
 module.exports = function(app){
 	app.use(function(req,res,next){
 		var user = req.session.user;
@@ -34,6 +52,9 @@ module.exports = function(app){
 	app.get("/article/delete/:id",User.loginRequired,Article.delete)
 	
 	app.post("/comment/add",Comment.add)
+
+	app.post("/images/upload",User.loginRequired,upload.array('pictures',10),Article.showPic)
+	app.post("/files/getfiles",User.loginRequired,File.getDirFiles)
 
 	app.get("*",function(req,res){
 		res.writeHead(404);

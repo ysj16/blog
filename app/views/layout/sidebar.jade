@@ -4,10 +4,10 @@ div.sideBar.fr
 		div.box-bd
 			form.search
 				input.text(type='text')
-				input.btn(type="submit" value="站内搜索")
+				a.btn(href="javascript:;") 站内搜索
 			div.search
 				input#baidu-text.text(type='text')
-				input#baidu-btn.btn(type="button" value="百度搜索")
+				a#baidu-btn.btn(href="" target="_blank" onclick="this.href='http://www.baidu.com/s?wd='+document.getElementById('baidu-text').value") 百度搜索
 	div.box
 		div.box-hd 关于我
 		div.box-bd.aboutMe 爱前端，爱dota，爱Eason
@@ -33,4 +33,4 @@ div.sideBar.fr
 				each item in fresh
 					li.fresh-item
 						a.blue(href="/article/detail/#{item._id}") #{item.title}
-						span.small （发布于：#{moment(item.createAt).format("YYYY年MM月DD日")}）
+						span.small （发布于：#{moment(item.meta.createAt).format("YYYY年MM月DD日")}）

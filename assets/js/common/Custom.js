@@ -3,11 +3,13 @@ var C = Custom = {
     addHandler:function(target,event,handler){//事件绑定
         if(window.addEventListener){
             this.addHandler = function(target,event,handler){
-                target.addEventListener(event,handler,false);
+                if(target)
+                    target.addEventListener(event,handler,false);
             }
         }else if(window.attachEvent){
             this.addHandler = function(target,event,handler){
-                target.attachEvent("on"+event,handler)
+                if(target)
+                    target.attachEvent("on"+event,handler)
             }
         }
         this.addHandler(target,event,handler);
@@ -128,7 +130,7 @@ var C = Custom = {
             if(pStr)
                 pStr = pStr.slice(0,pStr.length-1)
             req.open("POST",url, true);
-            req.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8;");   
+            req.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
             req.send(pStr);
             req.onreadystatechange = function(){
                 if(req.readyState == 4){
