@@ -52,12 +52,14 @@ app.use(session({
 
 app.use(compress());
 if(app.get("env")=="production"){//如果为生产环境加载构建之后的静态文件目录
-	app.use(express.static('build_assets'));
+	app.use(express.static('build_assets',{maxAge: '3600000'}));
 }
 else{//否则加载源文件
 	app.use(express.static('assets'));
 }
-app.use("/uploads",express.static('uploads'));
+app.use("/uploads",express.static('uploads',{
+	maxAge: '3600000'
+}));
 app.use(bodyParser.urlencoded({extended:false}));
 
 if(app.get("env")=="development"){
