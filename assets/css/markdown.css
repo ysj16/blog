@@ -437,7 +437,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .markdown-body table,
 .markdown-body pre {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin: 8px 0;
 }
 
 .markdown-body hr {
