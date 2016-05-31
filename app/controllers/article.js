@@ -79,7 +79,7 @@ exports.show  = function(req,res){
 		  tables: true,
 		  breaks: true,
 		  pedantic: false,
-		  sanitize: true,
+		  sanitize: false,
 		  smartLists: true,
 		  smartypants: false
 	});

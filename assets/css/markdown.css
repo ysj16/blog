@@ -176,10 +176,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .markdown-body th {
   padding: 0;
 }
-
+/*
 .markdown-body * {
   box-sizing: border-box;
-}
+}*/
 
 .markdown-body input {
   font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";

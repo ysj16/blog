@@ -61,7 +61,6 @@ app.use("/uploads",express.static('uploads',{
 	maxAge: '3600000'
 }));
 app.use(bodyParser.urlencoded({extended:false}));
-
 if(app.get("env")=="development"){
   app.set('showStackError', true)
   app.use(morgan(':method :url :status'))

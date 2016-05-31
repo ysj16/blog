@@ -47,9 +47,9 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .sideBar .tags-item .color{color:#999;}
 .sideBar .hots-item,.sideBar .fresh-item{text-indent: 2em;}
 
-.sideBar .small,.tips{color:#999;font-size: 12px;}
+.sideBar .small,.main .tips{color:#999;font-size: 12px;margin: 20px 0 5px 0;}
 
-.main{margin-right: 350px;padding:30px;overflow: hidden;}
+.main{margin-right: 350px;padding:30px 30px 10px 30px;overflow: hidden;}
 
 
 /*首页主体*/
@@ -83,8 +83,8 @@ h1{display: block;height: 0;width: 0;overflow: hidden;}
 .loginBox input{width:250px;}
 
 /*评论*/
-.addComment{margin:10px 30px;}
-.addComment h2{font-size: 16px;}
+.addComment{margin: 6px 395px 6px 30px;border-top: 1px solid #ddd;padding-top:5px;}
+.addComment h2{font-size: 16px;line-height: 2.5}
 .comments .addComment{margin:0 10px;}
 .addComment .form-wrap{margin-bottom:10px;}
 .addComment .text{width:220px;height: 23px;margin-right:5px;font-size: 14px;border: 1px solid #aaa;padding-left:3px}
