@@ -25,7 +25,7 @@ div.sideBar.fr
 				each item in hots
 					li.hots-item 
 						a.blue(href="/article/detail/#{item._id}") #{item.title}
-						span.small （历史访问量：#{item.pv}次）
+						span.small （访问：#{item.pv}）
 	div.box
 		div.box-hd 最新文章
 		div.box-bd.fresh
@@ -33,4 +33,4 @@ div.sideBar.fr
 				each item in fresh
 					li.fresh-item
 						a.blue(href="/article/detail/#{item._id}") #{item.title}
-						span.small （发布于：#{moment(item.meta.createAt).format("YYYY年MM月DD日")}）
+						span.small （#{moment(item.meta.createAt).format("YYYY-MM-DD")}）
