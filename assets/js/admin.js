@@ -34,6 +34,7 @@ C.addHandler(ImgUpload,"submit",function(e){
 
 var SelRoot = document.getElementById("SelRoot"),panel = document.getElementById("imgPanel"),path = document.getElementById("Path");
 C.addHandler(SelRoot,"change",function(e){
+	path.value = SelRoot.value;
 	if(SelRoot.value!=0){
 		C.post("/files/getFiles",{path:SelRoot.value},function(result){
 			var files = JSON.parse(result).files,
@@ -43,7 +44,6 @@ C.addHandler(SelRoot,"change",function(e){
 				img = document.createElement("img");
 				img.src = "http://"+host + "/" + SelRoot.value + file;
 				container.appendChild(img)
-				path.value = SelRoot.value;
 			})
 			panel.innerHTML = container.innerHTML;
 		},function(){
