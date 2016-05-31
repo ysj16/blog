@@ -11,14 +11,14 @@ module.exports = function(app){
 			app.locals.allTags = tags;
 		})
 	Article
-		.find()
+		.find({"status":1})
 		.sort({pv:-1})
 		.limit(15)
 		.exec(function(err,hots){
 			app.locals.hots = hots;
 		})
 	Article
-		.find()
+		.find({"status":1})
 		.sort({"meta.createAt":-1})
 		.limit(15)
 		.exec(function(err,fresh){

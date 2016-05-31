@@ -7,6 +7,7 @@ var User = require("../app/controllers/user");
 var Article = require("../app/controllers/article");
 var Comment = require("../app/controllers/comment")
 var File = require("../app/controllers/File")
+var Common = require("../app/controllers/common")
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -26,9 +27,10 @@ module.exports = function(app){
 	app.use(function(req,res,next){
 		var user = req.session.user;
 		app.locals.user = user||null;
+		Common(app);
 		next();
 	})
-	require("../app/controllers/common")(app);
+	
 	app.get("/",Index.index)
 
 	app.post("/user/login",User.login)
