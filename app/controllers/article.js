@@ -112,6 +112,7 @@ exports.show  = function(req,res){
 			obj.moment = moment;
 			Comment.get(id).then(function(comments){
 				obj.comments = comments;
+				console.log(obj)
 				return res.render("article",obj);
 			})
 		})
