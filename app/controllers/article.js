@@ -50,7 +50,7 @@ exports.listTag = function(req,res,next){
 		if(tag)
 			renderObj.tagName = tag.name;
 	})
-    var allDates = Article.find({tags:{$in:[id]}}).populate("tags").sort({isTop:-1}).sort({"meta.createAt":1});
+    var allDates = Article.find({tags:{$in:[id]},status:1}).populate("tags").sort({isTop:-1}).sort({"meta.createAt":1});
     allDates
       .exec(function(err){if(err) console.log(err)})
       .then(function(data){

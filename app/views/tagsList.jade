@@ -7,40 +7,41 @@ block js
 		script(src="/js/admin.js")
 
 block content
-	include layout/sidebar
-	.main
-		div.pageNav
-			span.hd 共20页，每页20条记录
-			a(href="/article/list/#{prev}").prev 上一页
-			-for(var i=1;i<=pages;i++){
-				if i<=5||i>=pages-2
-					if(i==page)
-						a(class="on",href="/article/list/#{i}").page #{i}
-					else
-						a(href="/article/list/#{i}").page #{i}
-				else 
-				if i==6
-					a(href="##").page ...
-			-}
-			a(href="/article/list/#{next}").next 下一页
-			a(href="/article/list/#{pages}").last 跳到最后
-		div.m-box
-			.m-box-hd 
-				h2.fl 类别：#{tagName}
-			ul.m-box-bd.news
-				each item in articles
-					li.cl
-						a(href="/article/detail/#{item._id}").fl
-							if(item.isTop==true)
-								h3.fl [置顶]#{item.title} 
-							else
-								h3.fl #{item.title} 
-						small.fc777.ml20.fl 发布于：#{moment(item.modifyAt).format("YYYY年MM月DD日 HH:mm:ss")} 
-						small.fr 作者：#{item.author}
-						if(item.preface)
-							p.preface.fl #{item.preface} 
-							a(href="/article/detail/#{item._id}").read-all.fl 查看全文
-						if(item.tags.length)
-							p.w100.fl 标签：
-								each tag in item.tags
-									a(href="##") #{tag.name} &nbsp;
+	.body.cl
+		include layout/sidebar
+		.main
+			div.pageNav
+				span.hd 共20页，每页20条记录
+				a(href="/article/list/#{prev}").prev 上一页
+				-for(var i=1;i<=pages;i++){
+					if i<=5||i>=pages-2
+						if(i==page)
+							a(class="on",href="/article/list/#{i}").page #{i}
+						else
+							a(href="/article/list/#{i}").page #{i}
+					else 
+					if i==6
+						a(href="##").page ...
+				-}
+				a(href="/article/list/#{next}").next 下一页
+				a(href="/article/list/#{pages}").last 跳到最后
+			div.m-box
+				.m-box-hd 
+					h2.fl 类别：#{tagName}
+				ul.m-box-bd.news
+					each item in articles
+						li.cl
+							a(href="/article/detail/#{item._id}").fl
+								if(item.isTop==true)
+									h3.fl [置顶]#{item.title} 
+								else
+									h3.fl #{item.title} 
+							small.fc777.ml20.fl 发布于：#{moment(item.modifyAt).format("YYYY年MM月DD日 HH:mm:ss")} 
+							small.fr 作者：#{item.author}
+							if(item.preface)
+								p.preface.fl #{item.preface} 
+								a(href="/article/detail/#{item._id}").read-all.fl 查看全文
+							if(item.tags.length)
+								p.w100.fl 标签：
+									each tag in item.tags
+										a(href="##") #{tag.name} &nbsp;
