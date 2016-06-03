@@ -60,7 +60,7 @@ block content
 					else
 						.comment-user #{item.name}说道:
 					small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-					.comment-content !{item.content.replace(/\n/g,"<br />")}
+					.comment-content #{item.content.replace(/\n/g,"<br />")}
 					if(item.replies.length<=20)
 						a(class="J-reply" href="javascript:;" data-id="#{item._id}") 回复
 					if(item.replies.length)
@@ -74,7 +74,7 @@ block content
 									else
 										.comment-user #{item2.name}说道:					
 									small.comment-time #{moment(item2.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-									.comment-content !{item2.content.replace(/\n/g,"<br />")}
+									.comment-content #{item2.content.replace(/\n/g,"<br />")}
 			else
 				li.comment-wrap
 					if(item.webSite)
@@ -84,7 +84,7 @@ block content
 					else
 						.comment-user #{item.name}说道:
 					small.comment-time #{moment(item.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-					.comment-content !{item.content.replace(/\n/g,"<br />")}
+					.comment-content #{item.content.replace(/\n/g,"<br />")}
 					if(item.replies.length<=20)
 						a(class="J-reply" href="javascript:;" data-id="#{item._id}") 回复
 					if(item.replies.length)
@@ -98,4 +98,4 @@ block content
 									else
 										.comment-user #{item2.name}说道:					
 									small.comment-time #{moment(item2.createAt).format("YYYY年MM月DD日 HH:mm:ss")}
-									.comment-content !{item2.content.replace(/\n/g,"<br />")}
+									.comment-content #{item2.content.replace(/\n/g,"<br />")}
