@@ -12,7 +12,11 @@ var schedule = require("node-schedule");
 var morgan = require("morgan");
 var app = new express();
 var port = process.env.PORT||3000;
-var dbUrl = 'mongodb://localhost/blog'
+var dbUrl = 'mongodb://localhost/blog';
+
+process.on('uncaughtException', function (err) {
+    console.log('Caught exception: ', err);
+});
 mongoose.connect(dbUrl)
 
 if(app.get("env")=="production"){
