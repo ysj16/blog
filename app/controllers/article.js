@@ -16,7 +16,8 @@ exports.list = function(req,res,next){
 	}
 	else{
 		var Article = require("../models/article");
-	    var allDates = Article.find(query).populate("tags").sort({isTop:-1}).sort({"meta.createAt":1});
+	    var allDates = Article.find(query).populate("tags").sort({isTop:-1}).sort({"meta.createAt":-1});
+	    console.log(2)
 	    allDates
 	      .exec(function(err){if(err) console.log(err)})
 	      .then(function(data){
