@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"blog.spiders"},{"v":1,"unique":true,"key":{"site":1},"name":"site_1","ns":"blog.spiders","background":true,"safe":null}]}
