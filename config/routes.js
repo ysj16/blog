@@ -57,7 +57,10 @@ module.exports = function(app){
 
 	app.post("/images/upload",User.loginRequired,upload.array('pictures',10),Article.showPic)
 	app.post("/files/getfiles",User.loginRequired,File.getDirFiles)
-
+	app.get("/ILoveCharlotte",function(req,res){
+		console.log("有用户访问"+new Date())
+		res.render("Charlotte")
+	})
 	app.get("*",function(req,res){
 		res.writeHead(404);
 		res.write("this is 404 page")

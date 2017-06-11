@@ -12,13 +12,12 @@ var schedule = require("node-schedule");
 var morgan = require("morgan");
 var app = new express();
 var port = process.env.PORT||3000;
-var dbUrl = 'mongodb://localhost/blog';
+var dbUrl = 'mongodb://yushangjiang:ysj9102170401@localhost:27017/blog';
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ', err);
 });
 mongoose.connect(dbUrl)
-
 if(app.get("env")=="production"){
 	app.locals.isBuild = "/build_assets";
 }else{
@@ -48,7 +47,7 @@ app.use(session({
 	secret:"blog", 
 	cookie: {maxAge: 100*60*60*24*15 },
 	store:new mongoStore({
-		url:'mongodb://localhost/blog',
+		url:'mongodb://yushangjiang:ysj9102170401@localhost/blog',
 		db:"blog",
 		collection:"sessions"
 	})
